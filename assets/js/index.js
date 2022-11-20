@@ -1,6 +1,6 @@
 $(document).ready(function(){
 	
-	var Cookiess = Cookies.get('e')
+	var Cookiess = $.cookie('e')
 	var res_z_data =''
 	var res_data = ''
 	if(Cookiess!=null){
