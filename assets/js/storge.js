@@ -6,7 +6,7 @@ $('#items-btn').click(function(){
     var rows='',
     table=$('#items-table')
     $.ajax({
-        url:'http://192.168.1.111:3030/findstorge',
+        url:'http://192.168.1.225:3030/findstorge',
         type:'get',
         headers:{
             'Content-Type':'application/x-www-form-urlencoded',
@@ -34,7 +34,7 @@ $('#food-btn').click(function(){
     var rows='',
     table=$('#food-table').html('')
     $.ajax({
-        url:'http://192.168.1.111:3030/findstorge',
+        url:'http://192.168.1.225:3030/findstorge',
         type:'get',
         headers:{
             'Content-Type':'application/x-www-form-urlencoded',
@@ -62,7 +62,7 @@ $('#money-btn').click(function(){
     var rows='',
     table=$('#money-table').html('')
     $.ajax({
-        url:'http://192.168.1.111:3030/findstorge',
+        url:'http://192.168.1.225:3030/findstorge',
         type:'get',
         headers:{
             'Content-Type':'application/x-www-form-urlencoded',
@@ -88,7 +88,7 @@ $('#money-btn').click(function(){
 
 $('#r-btn').click(function(){
     $.ajax({
-        url:'http://192.168.1.111:3030/report-storge',
+        url:'http://192.168.1.225:3030/report-storge',
         type:'get',
         headers:{
             'Content-Type':'application/x-www-form-urlencoded',

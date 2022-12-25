@@ -1,9 +1,9 @@
 $(document).ready(function(){
 
-	var Cookiess= Cookies.get('e');
+	var Cookiess= $.cookie('e');
 	if(Cookiess!=null){
 		$.ajax({
-		  url: "http://192.168.1.111:3030/check",
+		  url: "http://192.168.1.225:3030/check",
 		  type: 'POST',
 		  headers: {
 			    "Content-Type": "application/x-www-form-urlencoded",
@@ -23,7 +23,7 @@ $('#loginForm').submit(function(e){
 	var password=$('#inputPassword').val()
 
 $.ajax({
-  url: "http://192.168.1.111:3030/login",
+  url: "http://127.0.0.1:3030/login",
   type: 'POST',
   headers: {
 	    "Content-Type": "application/x-www-form-urlencoded"
@@ -37,7 +37,7 @@ $.ajax({
     $('#PasswordError').show()
   	},
   success: function(data) {
-    Cookies.set('e',data.token)
+    $.cookie('e',data.token)
     window.location.href="./"
   }
 })

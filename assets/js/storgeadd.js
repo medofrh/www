@@ -16,7 +16,7 @@ $('#new-items').submit(function(e){
     }else{
 
         $.ajax({
-            url:'http://192.168.1.111:3030/addstorge',
+            url:'http://192.168.1.225:3030/addstorge',
             type:'post',
             headers:{
                 'Content-Type':'application/x-www-form-urlencoded',

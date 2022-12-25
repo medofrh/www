@@ -5,7 +5,7 @@ $(document).ready(function(){
 	var res_data = ''
 	if(Cookiess!=null){
 		$.ajax({
-			url:"http://192.168.1.111:3030/zones",
+			url:"http://192.168.1.225:3030/zones",
 			type:"POST",
 			headers:{
 				"Content-Type": "application/x-www-form-urlencoded",
@@ -20,7 +20,7 @@ $(document).ready(function(){
 			}
 		})
 		$.ajax({
-			url:"http://192.168.1.111:3030/zones",
+			url:"http://192.168.1.225:3030/zones",
 			type:"POST",
 			headers:{
 				"Content-Type": "application/x-www-form-urlencoded",
