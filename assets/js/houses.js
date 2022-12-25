@@ -8,8 +8,8 @@ $(document).ready(function () {
 
 	
 function Cookie (){
-	var Cookiess= $.cookie('e')
-	return Cookiess
+	var Cookiess= $.cookie('e');
+	return Cookiess;
 }	
 
 function Zone(){
@@ -30,7 +30,7 @@ function HousesRequest(Cookiess,Zone){
 	if(Cookiess!=null){
 
 		$.ajax({
-			url:"http://192.168.1.225:3030/housesfind",
+			url:"http://127.0.0.1:3030/housesfind",
 			type:"get",
 			headers:{
 				"Content-Type": "application/x-www-form-urlencoded",
@@ -43,7 +43,6 @@ function HousesRequest(Cookiess,Zone){
 				if(data.length==0){window.location.href="./"}
 				housestable.html('')
 				$.each(data,(k,v)=>{
-					// console.log(v.HouseName,v._id)
 					rows+=`<button type="button" class="btn btn-secondary btn-house" onclick="HouseInfo('${v._id}')">${v.HouseName}</button>`
 				})
 				housestable.html(rows)
@@ -66,7 +65,7 @@ function addhouse(){
 	if (cookie!=null) {
 
 		$.ajax({
-			url:"http://192.168.1.225:3030/houseadd",
+			url:"http://127.0.0.1:3030/houseadd",
 			type:"POST",
 			headers:{
 				"Content-Type": "application/x-www-form-urlencoded",
@@ -94,7 +93,7 @@ function HouseInfo(e){
 $('#r-houses').click(()=>{
 	var zone = Zone();
 	$.ajax({
-		url:'http://192.168.1.225:3030/reportzone',
+		url:'http://127.0.0.1:3030/reportzone',
 		type:'get',
 		headers:{
 			'Content-Type':'application/x-www-form-urencoded',
@@ -111,7 +110,7 @@ $('#r-priority').click(function(){
 	nationality = $('#r-nationality option:selected').text();
 
 	$.ajax({
-		url:'http://192.168.1.225:3030/reportpriority',
+		url:'http://127.0.0.1:3030/reportpriority',
 		type:'get',
 		headers:{
 			'Content-Type':'application/x-www-form-urencoded',

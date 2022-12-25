@@ -3,7 +3,7 @@ $(document).ready(function(){
 	var Cookiess= $.cookie('e');
 	if(Cookiess!=null){
 		$.ajax({
-		  url: "http://192.168.1.225:3030/check",
+		  url: "http://127.0.0.1:3030/check",
 		  type: 'POST',
 		  headers: {
 			    "Content-Type": "application/x-www-form-urlencoded",
