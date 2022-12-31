@@ -10,6 +10,7 @@ $(document).ready(function(){
 			headers:{
 				"Content-Type": "application/x-www-form-urlencoded",
 				"Authorization": "Bearer "+Cookiess+""
+				
 			},
 			success:function(data){
 				$('#zones-page').empty() 
