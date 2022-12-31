@@ -58,6 +58,14 @@ function pagerequest(){
             }
 		}
 	})
+    $.ajax({
+        url: "http://127.0.0.1:3030/personfind",
+        method: "GET",
+        headers: {
+            "Content-Type": "application/x-www-form-urlencoded",
+            "Authorization": "Bearer "+Cookie()
+        }
+    })
 }
 
 function personsbutton(buttonid){
@@ -184,7 +192,7 @@ function addperson(){
 	sex=$('#sex-input option:selected').val(),
 	note=$('#note-input').val(),
 	_id=houseid(),
-	deprtement=$('#deprtement-input').val()
+	departement=$('#deprtement-input').val()
 
 $.ajax({
 	url: "http://127.0.0.1:3030/personadd",
@@ -202,7 +210,7 @@ $.ajax({
 	    "sex":sex ,
 	    "note":note ,
 	    "_id":_id ,
-	    "deprtement":deprtement 
+	    "departement":departement 
   	},
   	success:function(data){
   		location.reload()
