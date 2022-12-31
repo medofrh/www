@@ -40,7 +40,6 @@ function HousesRequest(Cookiess,Zone){
 				"zone":Zone
 			},
 			success:function(data){
-				if(data.length==0){window.location.href="./"}
 				housestable.html('')
 				$.each(data,(k,v)=>{
 					rows+=`<button type="button" class="btn btn-secondary btn-house" onclick="HouseInfo('${v._id}')">${v.HouseName}</button>`
