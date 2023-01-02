@@ -3,9 +3,9 @@
     margin: 0;
 }
 
-h1,h2,h3,h4,h5,h6{
+/* h1,h2,h3,h4,h5,h6{
     color: #fff;
-}
+} */
 .page-header
 {
     padding: 30px 30px 0;
@@ -333,6 +333,11 @@ h1,h2,h3,h4,h5,h6{
     cursor: pointer;
     color: white;
 }
-#HousesTable > button{
+
+#HousesTable button{
+    margin: 1%;
+}
+
+#personsbtn button{
     margin: 1%;
 }

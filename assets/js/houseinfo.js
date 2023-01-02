@@ -8,24 +8,25 @@ function pagerequest(){
 	housename  = $('#housename'),
 	houseaddress=$('#houseaddress'),
 	pTabler='',
-	personsbtnr=''
+	personsbtnr='';
 
 	$.ajax({
 
-		url: "http://192.168.1.225:3030/personsrequest",
-		method: "GET",
+		url: "http://192.168.1.225:3030/personfind",
+		type: "GET",
 		headers: {
 			"Content-Type": "application/x-www-form-urlencoded",
-			"Authorization": "Bearer "+Cookie()+""
+			"Authorization": "Bearer "+Cookie()
 		},
 		data: {
 		    "houseid":houseid()
 	  	},
 	  	success:function(data){
-			pTable.html(' ')
-			personsbtn.html(' ')
+			pTable.html(' ');
+			personsbtn.html(' ');
 			$.each(data,(k,v)=>{
-				if(v.Priority==1){
+				// ToDo Priority
+				if(v.Priority=='1'){
 					pTabler +=`	<tr>
 	                            <td>${v.fullname}</td>
 	                        	</tr>`
@@ -34,53 +35,39 @@ function pagerequest(){
 			$.each(data,(k,v)=>{
 				personsbtnr +=`<button type="button" class="btn btn-secondary btn-block btn-house" data-toggle="modal" data-target="#infoperson" onclick="personsbutton('${v._id}')">${v.fullname}</button>`
 			})
+			personsbtnr +=`<button type="button" class="btn btn-success btn-block btn-house" data-toggle="modal" data-target="#addperson">add person</button>`;
+			housename.append(data[0].houseid.HouseName)
+			houseaddress.append(data[0].houseid.addresses.addressetxt)
 			personsbtn.html(personsbtnr)
+			if(pTabler==""||pTabler==undefined){
+				pTabler =`	<tr>
+								<td>empty</td>
+							</tr>`
+			}
 			pTable.html(pTabler)
-	  	}
-	})
 
-	$.ajax({
-		url: "http://192.168.1.225:3030/personhousedata",
-		method: "GET",
-		headers: {
-			"Content-Type": "application/x-www-form-urlencoded",
-			"Authorization": "Bearer "+Cookie()+""
-		},
-		data: {
-			id:houseid()
-		},
-		success:function(data){
-			housename.append(data[0].HouseName)
-			houseaddress.append(data[0].addresses.addresstetxt)
-		},error:function(err){
+	  	},error:function(err){
 			if(err){
-                // window.location.href="./";
-            }
+				alert("Error");
+				window.location.href="./";
+			}
 		}
 	})
-    $.ajax({
-        url: "http://192.168.1.225:3030/personfind",
-        method: "GET",
-        headers: {
-            "Content-Type": "application/x-www-form-urlencoded",
-            "Authorization": "Bearer "+Cookie()
-        }
-    })
 }
 
 function personsbutton(buttonid){
 	
 	var view = $('#view-list-person'),
-	btnvalue = $('#btn-value')
-	view.html(' ')
-	btnvalue.html(' ')
+	btnvalue = $('#btn-value');
+	view.html(' ');
+	btnvalue.html(' ');
 	var rows='',
-	btnnn=''
+	btnnn='';
 
 	$.ajax({
 
 		url: "http://192.168.1.225:3030/personrequest",
-		method: "GET",
+		type: "GET",
 		headers: {
 			"Content-Type": "application/x-www-form-urlencoded",
 			"Authorization": "Bearer "+Cookie()+""
@@ -89,30 +76,35 @@ function personsbutton(buttonid){
 		    "personid":buttonid
 	  	},
 	  	success:function(data){
-  			rows += `<label class="control-label text-left" id="text_fullname">${data[0].fullname}</label>`
-  			rows += `<br>`
-  			rows += `<label class="control-label text-left" id="text_nationality">${data[0].nationality}</label>`
-  			rows += `<br>`
-  			rows += `<label class="control-label text-left" id="text_phonenummber">${data[0].phonenummber}</label>`
-  			rows += `<br>`
-  			rows += `<label class="control-label text-left" id="text_deprtement">${data[0].deprtement}</label>`
-  			rows += `<br>`
-  			rows += `<label class="control-label text-left" id="text_birthday">${data[0].birthday}</label>`
-  			rows += `<br>`
-  			rows += `<label class="control-label text-left" id="text_tc">${data[0].tc}</label>`
-  			rows += `<br>`
-  			rows += `<label class="control-label text-left" id="text_dateadd">${data[0].dateadd}</label>`
-  			rows += `<br>`
-  			rows += `<label class="control-label text-left" id="text_sex">${data[0].sex}</label>`
-  			rows += `<br>`
-  			rows += `<label class="control-label text-left" id="text_Priority">${data[0].Priority}</label>`  			
-  			rows += `<br>`
-  			rows += `<label class="control-label text-left" id="text_note">${data[0].note}</label>`
-
-  			btnnn +=`<button type="button" class="btn btn-success btn-block" onclick="personupdate('${data[0]._id}')">Add</button>`
-		  			 
-		  	view.html(rows)
-			btnvalue.html(btnnn)
+			if(Array.isArray(data) || Object.keys(data).length === 0){
+				alert("Error");
+				window.location.href="./";
+			}else{
+				rows += `<label class="control-label text-left" id="text_fullname">${data.fullname}</label>`
+				rows += `<br>`
+				rows += `<label class="control-label text-left" id="text_nationality">${data.nationality}</label>`
+				rows += `<br>`
+				rows += `<label class="control-label text-left" id="text_phonenummber">${data.phonenummber}</label>`
+				rows += `<br>`
+				rows += `<label class="control-label text-left" id="text_deprtement">${data.departement}</label>`
+				rows += `<br>`
+				rows += `<label class="control-label text-left" id="text_birthday">${data.birthday}</label>`
+				rows += `<br>`
+				rows += `<label class="control-label text-left" id="text_tc">${data.tc}</label>`
+				rows += `<br>`
+				rows += `<label class="control-label text-left" id="text_dateadd">${data.dateadd}</label>`
+				rows += `<br>`
+				rows += `<label class="control-label text-left" id="text_sex">${data.sex}</label>`
+				rows += `<br>`
+				rows += `<label class="control-label text-left" id="text_Priority">${data.Priority}</label>`  			
+				rows += `<br>`
+				rows += `<label class="control-label text-left" id="text_note">${data.note}</label>`
+				
+				btnnn +=`<button type="button" class="btn btn-success btn-block" onclick="personupdate('${data._id}')">Add</button>`
+				
+				view.html(rows)
+				btnvalue.html(btnnn)
+			}
 	  	}
 	})
 }
@@ -141,18 +133,19 @@ function changepersontext(){
 }
 
 function personupdate(id){
-	// console.log(id)
-
-	var
-	fullname=$('#update_fullname').val(),	
-	nationality=$('#update_nationality').val(),
-	phonenummber=$('#update_phonenumber').val(),
-	deprtement=$('#update_department').val(),
-	birthday=$('#update_birthday').val(),
-	tc=$('#update_tc').val(),
-	sex=$('#update_sex').val(),
-	priority=$('#update_priority').val(),	
-	note=$('#update_note').val()
+	
+	var person = {
+		_id:id,
+		fullname:$('#update_fullname').val(),	
+		nationality:$('#update_nationality').val(),
+		phonenummber:$('#update_phonenumber').val(),
+		departement:$('#update_department').val(),
+		birthday:$('#update_birthday').val(),
+		tc:$('#update_tc').val(),
+		sex:$('#update_sex').val(),
+		Priority:$('#update_priority').val(),	
+		note:$('#update_note').val()
+	}
 
 	$.ajax({
 		url:"http://192.168.1.225:3030/personupdate",
@@ -161,22 +154,11 @@ function personupdate(id){
 			"Content-Type": "application/x-www-form-urlencoded",
 			"Authorization": "Bearer "+Cookie()+""
 		},
-		data:{
-
-		    "_id":id, 
-			"fullname":fullname,
-		    "nationality":nationality,
-		    "phonenummber":phonenummber,
-		    "deprtement":deprtement, 
-		    "birthday":birthday,
-		    "tc":tc ,
-		    "sex":sex ,
-		    "priority":priority,
-		    "note":note
-
-		},
-		success:function(data){
-			location.reload()
+		data:{"person":person},
+		success:function(){
+			location.reload();
+		},error:function(err){
+			alert("Error on update!");
 		}
 	})
 }
@@ -185,7 +167,7 @@ function addperson(){
 
 	var 
 	fullname=$('#fullname-input').val(),
-	nationality=$("#s-add option:selected").text(),
+	nationality=$("#nationality-input").val(),
 	phonenummber=$('#phonenummber-input').val(),
 	birthday=$('#birthday-input').val(),
 	tc=$('#tc-input').val(),
@@ -196,7 +178,7 @@ function addperson(){
 
 $.ajax({
 	url: "http://192.168.1.225:3030/personadd",
-	method: "POST",
+	type: "POST",
 	headers: {
 		"Content-Type": "application/x-www-form-urlencoded",
 		"Authorization": "Bearer "+Cookie()+""
@@ -214,7 +196,10 @@ $.ajax({
   	},
   	success:function(data){
   		location.reload()
-  	}
+  	},error:function(e){
+		alert("error!");
+		window.location.href="./";
+	}
 })
 
 }
@@ -224,7 +209,7 @@ function personsdeletetable(){
 	var rows=''
 
 	$.ajax({
-	url: "http://192.168.1.225:3030/personsrequest",
+	url: "http://192.168.1.225:3030/personfind",
 	method: "GET",
 	headers: {
 		"Content-Type": "application/x-www-form-urlencoded",
@@ -236,8 +221,6 @@ function personsdeletetable(){
   	success:function(data){
 		priority_table.html(' ')
 		$.each(data,(k,v)=>{
-			console.log(v.Priority)
-
 				rows+=`<div class="form-check">
                     <input class="form-check-input" type="checkbox" value="${v._id}">
                     <label class="form-check-label" for="defaultCheck1">
@@ -261,7 +244,7 @@ function persondelete(){
 
     $.ajax({
 			url:"http://192.168.1.225:3030/delperson",
-			type:"POST",
+			type:"delete",
 			headers:{
 				"Content-Type": "application/x-www-form-urlencoded",
 				"Authorization": "Bearer "+Cookie()+""
@@ -279,7 +262,7 @@ function personspriority(){
 	var priority_table =$('#personsprioritytable')
 	var rows=''
 	$.ajax({
-	url: "http://192.168.1.225:3030/personsrequest",
+	url: "http://192.168.1.225:3030/personfind",
 	method: "GET",
 	headers: {
 		"Content-Type": "application/x-www-form-urlencoded",
@@ -317,12 +300,12 @@ function personspriority(){
 function addpriority(){
 	event.preventDefault()
 
-    var searchID = $("#personsprioritytable input:checkbox:checked").map(function(){
+    $("#personsprioritytable input:checkbox:checked").map(function(){
       	var z = $(this).val()
       	call(z,1)
     }).get()
 
-    var unchecked = $("#personsprioritytable input:checkbox:not(:checked)").map(function(){
+    $("#personsprioritytable input:checkbox:not(:checked)").map(function(){
       	var y=$(this).val()
       	call (y,0)
     }).get()

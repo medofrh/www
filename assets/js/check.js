@@ -9,9 +9,6 @@ if($.cookie('e')){
       },
     error : function(err) {
       window.location.href="./login.html";
-    },
-    success: function(data) {
-      console.log('Success!',data)
     }
   })
 }else{
