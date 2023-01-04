@@ -1,6 +1,3 @@
-$(document).ready(function(){
-
-})
 $('#new-items').submit(function(e){
     e.preventDefault();
     var 
@@ -9,7 +6,6 @@ $('#new-items').submit(function(e){
     function calc(e){
 		return e.getFullYear() * 8760 + (e.getMonth()+1) * 730 + e.getDate() * 24
     }
-    console.log(datex+'\n'+datey)
     if(datex>datey){
         $('#s-edate').addClass('is-invalid')
         $('#s-rdate').addClass('is-invalid')
@@ -20,7 +16,7 @@ $('#new-items').submit(function(e){
             type:'post',
             headers:{
                 'Content-Type':'application/x-www-form-urlencoded',
-                'Authorization':'Bearer '+Cookies.get('e')
+                'Authorization':'Bearer '+Cookie()
             },data:{
                 'type':$('#s-type option:selected').val(),
                 'item':$('#s-item').val(),
@@ -32,6 +28,9 @@ $('#new-items').submit(function(e){
                 window.location='./storgedetails.html'
             }
         })
-}
-    console.log('ohhh honey')
+    }
 })
+function Cookie (){
+	var Cookiess= $.cookie('e')
+	return Cookiess
+}	

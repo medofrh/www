@@ -25,7 +25,6 @@ function pagerequest(){
 			pTable.html(' ');
 			personsbtn.html(' ');
 			$.each(data,(k,v)=>{
-				// ToDo Priority
 				if(v.Priority=='1'){
 					pTabler +=`	<tr>
 	                            <td>${v.fullname}</td>

@@ -1,7 +1,4 @@
-var checkedd = []
-$(document).ready(function() {
-		
-})
+var checkedd = [];
 function Cookie (){
 	var Cookiess= $.cookie('e')
 	return Cookiess

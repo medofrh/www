@@ -1,7 +1,3 @@
-$(document).ready(function(){
-
-})
-
 $('#items-btn').click(function(){
     var rows='',
     table=$('#items-table')
@@ -10,7 +6,7 @@ $('#items-btn').click(function(){
         type:'get',
         headers:{
             'Content-Type':'application/x-www-form-urlencoded',
-            'Authorization':'Bearer '+Cookies.get('e')
+            'Authorization':'Bearer '+Cookie()
         },data:{
             'type':'I'
         },success:function(data){
@@ -38,7 +34,7 @@ $('#food-btn').click(function(){
         type:'get',
         headers:{
             'Content-Type':'application/x-www-form-urlencoded',
-            'Authorization':'Bearer '+Cookies.get('e')
+            'Authorization':'Bearer '+Cookie()
         },data:{
             'type':'F'
         },success:function(data){
@@ -92,7 +88,7 @@ $('#r-btn').click(function(){
         type:'get',
         headers:{
             'Content-Type':'application/x-www-form-urlencoded',
-            'Authorization':'Bearer '+Cookies.get('e')
+            'Authorization':'Bearer '+Cookie()
         },data:{
             'type':$('#r-storge').val()
         },success:function(data){
@@ -108,3 +104,7 @@ function date_format(e){
     y = new Date(e).getFullYear()
     return d+'-'+m+'-'+y;
 }
+function Cookie (){
+	var Cookiess= $.cookie('e')
+	return Cookiess
+}	
