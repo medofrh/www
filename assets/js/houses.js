@@ -98,8 +98,16 @@ $('#r-houses').click(()=>{
 			'Content-Type':'application/x-www-form-urencoded',
 			'Authorization':'Bearer '+Cookie()
 		},data:{'zone':zone},
+		xhrFields: {
+		   responseType: 'blob'
+		},
 		success:function(data){
-            $.print(data)
+			var a = document.createElement('a');
+			var url = window.URL.createObjectURL(data);
+			a.href = url;
+			a.download = 'pdf.pdf';
+			a.click();
+			window.URL.revokeObjectURL(url);
 		}
 	})
 });
