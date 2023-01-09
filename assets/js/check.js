@@ -1,7 +1,7 @@
 if($.cookie('e')){
   var Cookiess= $.cookie('e');
   $.ajax({
-    url: "http://192.168.1.225:3030/check",
+    url: "http://127.0.0.1:3030/check",
     type: 'POST',
     headers: {
         "Content-Type": "application/x-www-form-urlencoded",
@@ -32,7 +32,7 @@ $('.back-btn').click(function(){
 $('#Logout').click(function(){
   var Cookiess= $.cookie('e')
     $.ajax({
-    url: "http://192.168.1.225:3030/logout",
+    url: "http://127.0.0.1:3030/logout",
     type: 'POST',
     headers: {
         "Content-Type": "application/x-www-form-urlencoded",
@@ -40,8 +40,8 @@ $('#Logout').click(function(){
       },
     error : function(err) {
       console.log('Error!', err)
-      // $.cookie('e',"")
-      // window.location.href="./login.html"
+      $.cookie('e',"")
+      window.location.href="./login.html"
     },
     success: function(data) {
       console.log('Success!',data)

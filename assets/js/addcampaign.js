@@ -26,7 +26,7 @@ $('#addnewcampaign').click(function(){
 	}
 
 	$.ajax({
-		url:"http://192.168.1.225:3030/addcampaign",
+		url:"http://127.0.0.1:3030/addcampaign",
 		type:"post",
 		headers:{
 			"Content-Type": "application/x-www-form-urlencoded",
@@ -129,7 +129,7 @@ function HousesRequest(Cookiess,Zone){
 	if(Cookiess!=null){
 
 		$.ajax({
-			url:"http://192.168.1.225:3030/housesfind",
+			url:"http://127.0.0.1:3030/housesfind",
 			type:"get",
 			headers:{
 				"Content-Type": "application/x-www-form-urlencoded",

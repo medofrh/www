@@ -12,7 +12,7 @@ function pagerequest(){
 
 	$.ajax({
 
-		url: "http://192.168.1.225:3030/personfind",
+		url: "http://127.0.0.1:3030/personfind",
 		type: "GET",
 		headers: {
 			"Content-Type": "application/x-www-form-urlencoded",
@@ -65,7 +65,7 @@ function personsbutton(buttonid){
 
 	$.ajax({
 
-		url: "http://192.168.1.225:3030/personrequest",
+		url: "http://127.0.0.1:3030/personrequest",
 		type: "GET",
 		headers: {
 			"Content-Type": "application/x-www-form-urlencoded",
@@ -147,7 +147,7 @@ function personupdate(id){
 	}
 
 	$.ajax({
-		url:"http://192.168.1.225:3030/personupdate",
+		url:"http://127.0.0.1:3030/personupdate",
 		method:"POST",
 		headers: {
 			"Content-Type": "application/x-www-form-urlencoded",
@@ -176,7 +176,7 @@ function addperson(){
 	departement=$('#deprtement-input').val()
 
 $.ajax({
-	url: "http://192.168.1.225:3030/personadd",
+	url: "http://127.0.0.1:3030/personadd",
 	type: "POST",
 	headers: {
 		"Content-Type": "application/x-www-form-urlencoded",
@@ -208,7 +208,7 @@ function personsdeletetable(){
 	var rows=''
 
 	$.ajax({
-	url: "http://192.168.1.225:3030/personfind",
+	url: "http://127.0.0.1:3030/personfind",
 	method: "GET",
 	headers: {
 		"Content-Type": "application/x-www-form-urlencoded",
@@ -242,7 +242,7 @@ function persondelete(){
     }).get()
 
     $.ajax({
-			url:"http://192.168.1.225:3030/delperson",
+			url:"http://127.0.0.1:3030/delperson",
 			type:"delete",
 			headers:{
 				"Content-Type": "application/x-www-form-urlencoded",
@@ -261,7 +261,7 @@ function personspriority(){
 	var priority_table =$('#personsprioritytable')
 	var rows=''
 	$.ajax({
-	url: "http://192.168.1.225:3030/personfind",
+	url: "http://127.0.0.1:3030/personfind",
 	method: "GET",
 	headers: {
 		"Content-Type": "application/x-www-form-urlencoded",
@@ -311,7 +311,7 @@ function addpriority(){
 
 function call(I,P){
 	    $.ajax({
-				url:"http://192.168.1.225:3030/addpersonpriority",
+				url:"http://127.0.0.1:3030/addpersonpriority",
 				type:"POST",
 				headers:{
 					"Content-Type": "application/x-www-form-urlencoded",
@@ -329,7 +329,7 @@ function call(I,P){
 }
 $('#r-houseinfo').click(function(){
 	$.ajax({
-		url:'http://192.168.1.225:3030/reporthouse',
+		url:'http://127.0.0.1:3030/reporthouse',
 		type:'get',
 		headers:{
 			'Content-Type':'application/x-www-form-urlencoded',
@@ -339,7 +339,6 @@ $('#r-houseinfo').click(function(){
 		},xhrFields: {
 		   responseType: 'blob'
 		},success:function(data){
-			console.log(data)
 			var a = document.createElement('a');
 			var url = window.URL.createObjectURL(data);
 			a.href = url;

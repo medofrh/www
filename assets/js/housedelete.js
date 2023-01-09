@@ -11,7 +11,7 @@ function HousesRequest(Cookiess,Zone){
 	if(Cookiess!=null){
 
 		$.ajax({
-			url:"http://192.168.1.225:3030/housesfind",
+			url:"http://127.0.0.1:3030/housesfind",
 			type:"get",
 			headers:{
 				"Content-Type": "application/x-www-form-urlencoded",
@@ -63,7 +63,7 @@ function housedel(){
 		checkbox.push($(this).val())
 	})
     $.ajax({
-			url:"http://192.168.1.225:3030/housedel",
+			url:"http://127.0.0.1:3030/housedel",
 			type:"POST",
 			headers:{
 				"Content-Type": "application/x-www-form-urlencoded",

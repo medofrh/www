@@ -1,7 +1,7 @@
 var rows='',table = $('#c-table')
 $(document).ready(function(){
     $.ajax({
-        url:"http://192.168.1.225:3030/campaignsfind",
+        url:"http://127.0.0.1:3030/campaignsfind",
         type:"get",
         headers:{
 			"Content-Type": "application/x-www-form-urlencoded",
@@ -64,7 +64,7 @@ $('#r-btn').click(function(){
     var month = new Date($('#r-monthvalue').val())
     if(!isNaN(month)){
         $.ajax({
-            url:'http://192.168.1.225:3030/reportnowcampaign',
+            url:'http://127.0.0.1:3030/reportnowcampaign',
             type:'get',
             headers:{
                 'Content-type':'application/x-www-form-urlencoded',
