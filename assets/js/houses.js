@@ -113,8 +113,7 @@ $('#r-houses').click(()=>{
 });
 $('#r-priority').click(function(){
 	let sex = $('#r-sex option:selected').val(),
-	priority = $('#r-option-priority option:selected').val(),
-	nationality = $('#r-nationality option:selected').text();
+	priority = $('#r-option-priority option:selected').val();
 
 	$.ajax({
 		url:'http://127.0.0.1:3030/reportpriority',
@@ -122,7 +121,7 @@ $('#r-priority').click(function(){
 		headers:{
 			'Content-Type':'application/x-www-form-urencoded',
 			'Authorization':'Bearer '+Cookie()
-		},data:{zone:Zone(),nationality:nationality,sex:sex,priority:priority},
+		},data:{zone:Zone(),sex:sex,priority:priority},
 		success:function(data){
 			$.print(data);
 		}

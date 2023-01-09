@@ -24,26 +24,31 @@ function pagerequest(){
 	  	success:function(data){
 			pTable.html(' ');
 			personsbtn.html(' ');
-			$.each(data,(k,v)=>{
-				if(v.Priority=='1'){
-					pTabler +=`	<tr>
-	                            <td>${v.fullname}</td>
-	                        	</tr>`
+			if(data.length==0){
+				personsbtnr +=`<button type="button" class="btn btn-success btn-block btn-house" data-toggle="modal" data-target="#addperson">add person</button>`;
+			}else{
+
+				$.each(data,(k,v)=>{
+					if(v.Priority=='1'){
+						pTabler +=`	<tr>
+									<td>${v.fullname}</td>
+									</tr>`
+					}
+				})
+				$.each(data,(k,v)=>{
+					personsbtnr +=`<button type="button" class="btn btn-secondary btn-block btn-house" data-toggle="modal" data-target="#infoperson" onclick="personsbutton('${v._id}')">${v.fullname}</button>`
+				})
+				personsbtnr +=`<button type="button" class="btn btn-success btn-block btn-house" data-toggle="modal" data-target="#addperson">add person</button>`;
+				housename.append(data[0].houseid.HouseName)
+				houseaddress.append(data[0].houseid.addresses.addressetxt)
+				if(pTabler==""||pTabler==undefined){
+					pTabler =`	<tr>
+					<td>empty</td>
+					</tr>`
 				}
-			})
-			$.each(data,(k,v)=>{
-				personsbtnr +=`<button type="button" class="btn btn-secondary btn-block btn-house" data-toggle="modal" data-target="#infoperson" onclick="personsbutton('${v._id}')">${v.fullname}</button>`
-			})
-			personsbtnr +=`<button type="button" class="btn btn-success btn-block btn-house" data-toggle="modal" data-target="#addperson">add person</button>`;
-			housename.append(data[0].houseid.HouseName)
-			houseaddress.append(data[0].houseid.addresses.addressetxt)
-			personsbtn.html(personsbtnr)
-			if(pTabler==""||pTabler==undefined){
-				pTabler =`	<tr>
-								<td>empty</td>
-							</tr>`
+				pTable.html(pTabler)
 			}
-			pTable.html(pTabler)
+			personsbtn.html(personsbtnr)
 
 	  	},error:function(err){
 			if(err){
