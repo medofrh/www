@@ -336,8 +336,16 @@ $('#r-houseinfo').click(function(){
 			'authorization':'Bearer '+Cookie()
 		},data:{
 			houseid:houseid()
+		},xhrFields: {
+		   responseType: 'blob'
 		},success:function(data){
-			$.print(data);
+			console.log(data)
+			var a = document.createElement('a');
+			var url = window.URL.createObjectURL(data);
+			a.href = url;
+			a.download = 'pdf.pdf';
+			a.click();
+			window.URL.revokeObjectURL(url);
 		}
 	});
 });

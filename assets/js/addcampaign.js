@@ -8,18 +8,22 @@ $('#addnewcampaign').click(function(){
 	
 	checkedd = []
 	$(".houses-checkbox input:checked").each(function (){
-		var person = {
-			HouseName:$(this).attr('name'),
-			houseID:$(this).val()
-		}
-		checkedd.push(person)
+		checkedd.push($(this).val())
 	})
 
-	var zones = $('#zonescard').val(),
-	item = $('#input-item').val(),
-	count = $('#input-count').val(),
-	start_time = new Date($('#picker-start').val()),
-	end_time = new Date($('#picker-end').val())
+	// var zones = $('#zonescard').val(),
+	// item = $('#input-item').val(),
+	// count = $('#input-count').val(),
+	// start_time = new Date($('#picker-start').val()),
+	// end_time = new Date($('#picker-end').val())
+	var campaign = {
+		zone : $('#zonescard').val(),
+		houses:checkedd,
+		item : $('#input-item').val(),
+		count : $('#input-count').val(),
+		start_c : new Date($('#picker-start').val()),
+		end_c : new Date($('#picker-end').val()),
+	}
 
 	$.ajax({
 		url:"http://192.168.1.225:3030/addcampaign",
@@ -29,16 +33,11 @@ $('#addnewcampaign').click(function(){
 			"Authorization": "Bearer "+Cookie()
 		},
 		data:{
-			"zone":zones,
-			"houses":checkedd,
-			"item":item,
-			"count":count,
-			"startc":start_time,
-			"endc":end_time
-			
+			campaign:campaign
 		},
 		success:function(data){
-			window.location='./campaignsnow.html'
+			// window.location='./campaignsnow.html';
+			console.log(data)
 		}
 	})
 

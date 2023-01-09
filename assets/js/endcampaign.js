@@ -24,7 +24,7 @@ $(document).ready(function(){
                 rows += zones(v.zone)
                 rows +=`<td>`
                 $.each(v.houses,(key,value)=>{
-                    rows +=value.housename+'\n'
+                    rows += value.HouseName+' '
                 })
                 rows +=`</td>`
                 rows +=`</tr>`
@@ -53,6 +53,9 @@ function zones(e){
         return x
     }else if(e=='S'){
         x=`<td>Southern Zone</td>`
+        return x
+    }else{
+        x=` undefined Zone `
         return x
     }
 }

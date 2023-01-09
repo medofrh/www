@@ -12,20 +12,19 @@ $(document).ready(function(){
                 e=new Date(e)
                 return e.getFullYear() * 8760 + (e.getMonth()+1) * 730 + e.getDate() * 24
             }
+            console.log(data)
             var time =new Date().getFullYear() * 8760 + (new Date().getMonth()+1) * 730 + new Date().getDate() * 24
             $.each(data,(k,v)=>{
                 if(calc(v.end_c)>=time){
                 rows +=`<tr>`
-                rows +=`<td></td>`
+                rows +=`<td>${k}</td>`
                 rows +=`<td>${v.item}</td>`
                 rows +=`<td>${v.count}</td>`
                 rows +=`<td>${date_format(v.start_c)}`+'\n'+`${date_format(v.end_c)}</td>`
-                rows += `<td>`
-                $.each(v.zone,(k,v)=>{rows +=zones(v)})
-                rows +=`</td>`
+                rows += `<td>${zones(v.zone)}</td>`
                 rows +=`<td>`
                 $.each(v.houses,(key,value)=>{
-                    rows +=value.housename+'\n'
+                    rows += value.HouseName+' '
                 })
                 rows +=`</td>`
                 rows +=`</tr>`
@@ -48,7 +47,6 @@ function Cookie (){
 	return Cookiess
 }	
 function zones(e){
-    console.log(e)
     var x
     if(e=='N'){
         x=` Northern Zone `
@@ -63,7 +61,8 @@ function zones(e){
         x=` Southern Zone `
         return x
     }else{
-        console.log('err')
+        x=` undefined Zone `
+        return x
     }
 }
 
